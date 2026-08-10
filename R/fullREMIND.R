@@ -35,11 +35,9 @@ fullREMIND <- function() {
   calcOutput("PHI",                                               file = "p01_phi.cs4r", aggregate = FALSE)
 
   calcOutput("PETaxes", subtype = "subsidies",        round = 2,  file = "f21_tau_pe_sub.cs4r")
-  calcOutput("FETaxes", subtype = "taxes",            round = 2,  file = "f21_tau_fe_tax.cs4r")
+  calcOutput("FETaxes", subtype = "taxes",            round = 8,  file = "f21_tau_fe_tax.cs4r")
   calcOutput("FETaxes", subtype = "subsidies",        round = 2,  file = "f21_tau_fe_sub.cs4r")
 
-  calcOutput("ExpertGuess", subtype = "taxConvergence", round = 2, file = "f21_tax_convergence.cs4r")
-  calcOutput("ExpertGuess", subtype = "taxConvergenceRollback", round = 2, file = "f21_tax_convergence_rollback.cs4r")
   calcOutput("ExpertGuess", subtype = "subConvergenceRollback", round = 2, file = "f21_sub_convergence_rollback.cs4r")
 
   calcOutput("Capital", scenario = gdpPopScen,        signif = 4, file = "f29_capitalQuantity.cs4r")
