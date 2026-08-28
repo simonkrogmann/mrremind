@@ -59,7 +59,7 @@ readExpertGuess <- function(subtype) {
 
   } else if (subtype == "co2prices") {
 
-    out <- read.csv("co2prices-2026-06.csv", sep = ";") %>%
+    out <- read.csv("co2prices-2026-08.csv", sep = ";") %>%
       select(-"Country", -"RegionCode") %>%
       as.magpie()
 
