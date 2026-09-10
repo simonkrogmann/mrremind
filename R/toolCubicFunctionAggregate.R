@@ -34,10 +34,6 @@
 #' @param returnSample boolean. Return samples used on estimation (default=FALSE).
 #' @param numberOfSamples numeric. NUmber of y-axis samples used on estimation
 #' (default=1e3).
-#' @param unirootLowerBound numeric. Lower bound to search for inverse solution in the
-#' initial bounds (default = -10).
-#' @param unirootUpperBound numeric. Upper bound to search for inverse solution in the
-#' initial bounds (default = 1e100).
 #' @param colourPallete vector. colour pallete to use on chart (default=FALSE).
 #' @param label list. List of chart labels (default=list(x = "x", y = "y", legend =
 #' "legend")).
@@ -79,8 +75,6 @@ toolCubicFunctionAggregate <- function(x,
                                        returnChart = FALSE,
                                        returnSample = FALSE,
                                        numberOfSamples = 1e3,
-                                       unirootLowerBound = -10,
-                                       unirootUpperBound = 1e100,
                                        colourPallete = FALSE,
                                        label = list(x = "x", y = "y", legend = "legend"),
                                        steepCurve = list()) {
@@ -109,7 +103,7 @@ toolCubicFunctionAggregate <- function(x,
 
   # function used to fit by sampling the sum of function inverses (sum in the x-axis)
   # input: data <- data table with coefficients of the functions to be aggregated. Format: one column for each coefficient
-  cubicFitAggregate <- function(data, xLowerBound = 0, xUpperBound = 100, returnCoeff = TRUE, returnChart = FALSE, returnSample = FALSE, numberOfSamples = 1e3, unirootLowerBound = -10, unirootUpperBound = 1e100, colourPallete = FALSE, label = list(x = "x", y = "y", legend = "legend")) {
+  cubicFitAggregate <- function(data, xLowerBound = 0, xUpperBound = 100, returnCoeff = TRUE, returnChart = FALSE, returnSample = FALSE, numberOfSamples = 1e3, colourPallete = FALSE, label = list(x = "x", y = "y", legend = "legend")) {
     if (nrow(data) == 1 || is.null(nrow(data))) { # no need to aggregate a single function
       # preparing results
       result <- list()
@@ -279,7 +273,7 @@ toolCubicFunctionAggregate <- function(x,
       currentDf <- reshape2::acast(currentDf, Region ~ coeff, value.var = "value")
       # estimating aggregated function
       if (is.null(rel)) { # single aggregated function
-        out <- cubicFitAggregate(currentDf, xLowerBound = xLowerBound, xUpperBound = xUpperBound, returnCoeff = returnCoeff, returnChart = returnChart, returnSample = returnSample, numberOfSamples = numberOfSamples, unirootLowerBound = unirootLowerBound, unirootUpperBound = unirootUpperBound, colourPallete = colourPallete, label = label)
+        out <- cubicFitAggregate(currentDf, xLowerBound = xLowerBound, xUpperBound = xUpperBound, returnCoeff = returnCoeff, returnChart = returnChart, returnSample = returnSample, numberOfSamples = numberOfSamples, colourPallete = colourPallete, label = label)
       } else { # looping through new regions and estimating the aggregated function
         if (returnMagpie == TRUE) {
           returnCoeff <- TRUE
@@ -294,7 +288,7 @@ toolCubicFunctionAggregate <- function(x,
           # upper bound
           currentxUpperBound <- as.numeric(xUpperBound[rel[from][rel[to] == as.character(region)], , names(groupsList[i])])
           names(currentxUpperBound) <- getRegions(xUpperBound[rel[from][rel[to] == as.character(region)], , names(groupsList[i])])
-          cubicFitAggregate(currentFilteredDf, xLowerBound = xLowerBound, xUpperBound = currentxUpperBound, returnCoeff = returnCoeff, returnChart = returnChart, returnSample = returnSample, numberOfSamples = numberOfSamples, unirootLowerBound = unirootLowerBound, unirootUpperBound = unirootUpperBound, colourPallete = colourPallete, label = label)
+          cubicFitAggregate(currentFilteredDf, xLowerBound = xLowerBound, xUpperBound = currentxUpperBound, returnCoeff = returnCoeff, returnChart = returnChart, returnSample = returnSample, numberOfSamples = numberOfSamples, colourPallete = colourPallete, label = label)
         })
         if (returnMagpie == TRUE) {
           out <- as.magpie(out)

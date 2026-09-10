@@ -14,8 +14,6 @@ toolCubicFunctionAggregate(
   returnChart = FALSE,
   returnSample = FALSE,
   numberOfSamples = 1000,
-  unirootLowerBound = -10,
-  unirootUpperBound = 1e+100,
   colourPallete = FALSE,
   label = list(x = "x", y = "y", legend = "legend"),
   steepCurve = list()
@@ -45,12 +43,6 @@ FALSE automatically if this option is active (default=TRUE).}
 
 \item{numberOfSamples}{numeric. NUmber of y-axis samples used on estimation
 (default=1e3).}
-
-\item{unirootLowerBound}{numeric. Lower bound to search for inverse solution in the
-initial bounds (default = -10).}
-
-\item{unirootUpperBound}{numeric. Upper bound to search for inverse solution in the
-initial bounds (default = 1e100).}
 
 \item{colourPallete}{vector. colour pallete to use on chart (default=FALSE).}
 
