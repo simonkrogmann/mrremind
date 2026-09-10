@@ -16,10 +16,10 @@
 readIRENA <- function(subtype) {
   # generation values are not (yet?) in 2026 data
   if (subtype == "Capacity") {
-    fileName <- "2026/IRENA_Stats_extract_2026 H1.xlsx"
+    fileName <- file.path("2026", "IRENA_Stats_extract_2026 H1.xlsx")
     valueColumn <- "Electricity Installed Capacity (MW)"
   } else if (subtype == "Generation") {
-    fileName <- "2025/IRENA_Statistics_Extract_2025H2.xlsx"
+    fileName <- file.path("2025", "IRENA_Statistics_Extract_2025H2.xlsx")
     valueColumn <- "Electricity Generation (GWh)"
   } else {
     stop("Not a valid subtype!")

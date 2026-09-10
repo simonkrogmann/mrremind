@@ -15,8 +15,8 @@
 #' method to derive the function that corresponds to the sum of cubic function
 #' inverses.
 #'
-#' Further extensions: the R function can be extended to support more complex curve
-#' estimations (beyonf third degree), whenever the mathematical function have a well
+#' Further extensions: the R function can be extended to support more complex polynomial curve
+#' estimations (beyond third degree), whenever the mathematical function have a well
 #' defined inverse function in the selected boundaries.
 #'
 #' @param x magclass object that should be aggregated or data frame with
